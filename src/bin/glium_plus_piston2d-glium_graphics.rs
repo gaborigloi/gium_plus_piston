@@ -9,7 +9,6 @@ extern crate viewport;
 use std::thread;
 use std::time::Duration;
 
-use glium::Surface;
 use glium_graphics::{
     Glium2d, OpenGL
 };
@@ -19,6 +18,8 @@ fn main() {
     use glium::backend::Facade;
 
     let (w, h) = (300_u32, 300_u32);
+
+    // have to specify viewport manually
     let viewport = viewport::Viewport {
         rect: [0, 0, w as i32, h as i32],
         draw_size: [w, h],
@@ -58,28 +59,14 @@ fn main() {
                 glium::glutin::Event::Refresh => {
                     let mut target = display.draw();
                     target.clear_color(0.0, 0.0, 1.0, 1.0);
-                    // method 1, have to specify viewport manually
-                    {
-                        g2d.draw(&mut target, viewport, |c, g| {
-                            use graphics::*;
-                            let transform = c.transform.flip_v().trans(0.0, -(h as f64));
-                            line([1.0, 0.0, 0.0, 1.0], // the red line
-                                 2.0,
-                                 [0.0, 0.0, 100.0, 100.0],
-                                 transform, g);
-                        });
-                    }
-                    // method 2, have to construct transformation by hand
-                    // If this method is used, we can draw on any Surface, not just a Frame.
-                    {
+                    g2d.draw(&mut target, viewport, |c, g| {
                         use graphics::*;
-                        let mut g = glium_graphics::GliumGraphics::new(&mut g2d, &mut target);
-                        let transform = math::translate([-1.0, -1.0]).scale(2.0 / w as f64, 2.0 / h as f64);
-                        line([0.0, 1.0, 1.0, 1.0], // the cyan line
-                             3.2,
-                             [100.0, 100.0, 200.0, 300.0],
-                             transform, &mut g);
-                    }
+                        let transform = c.transform.flip_v().trans(0.0, -(h as f64));
+                        line([1.0, 0.0, 0.0, 1.0], // the red line
+                             2.0,
+                             [0.0, 0.0, 100.0, 100.0],
+                             transform, g);
+                    });
                     target.finish().unwrap();
                 },
                 _ => ()
