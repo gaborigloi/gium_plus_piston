@@ -1,0 +1,12 @@
+[package]
+name = "glium_plus_piston"
+version = "0.1.0"
+authors = ["Iglói Gábor <gi225@srcf.net>"]
+
+[dependencies]
+glium = "*"
+image = "*"
+piston2d-glium_graphics = "*"
+piston2d-graphics = "*"
+piston = "*"
+piston-viewport = "*"
