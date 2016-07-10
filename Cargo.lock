@@ -3,7 +3,6 @@ name = "glium_plus_piston"
 version = "0.1.0"
 dependencies = [
  "glium 0.15.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "image 0.10.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "piston 0.24.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "piston-viewport 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "piston2d-glium_graphics 0.27.0 (registry+https://github.com/rust-lang/crates.io-index)",

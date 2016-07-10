@@ -1,2 +1,0 @@
-parrot.png: public domain, by Ricardo Cancho Niemietz:
-https://en.wikipedia.org/wiki/File:Grayscale_8bits_palette_sample_image.png

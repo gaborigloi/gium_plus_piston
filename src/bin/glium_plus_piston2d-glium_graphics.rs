@@ -58,7 +58,7 @@ fn main() {
                 glium::glutin::Event::Closed => return,
                 glium::glutin::Event::Refresh => {
                     let mut target = display.draw();
-                    target.clear_color(0.0, 0.0, 1.0, 1.0);
+                    target.clear_color(1.0, 1.0, 1.0, 1.0);
                     g2d.draw(&mut target, viewport, |c, g| {
                         use graphics::*;
                         line([1.0, 0.0, 0.0, 1.0], // the red line

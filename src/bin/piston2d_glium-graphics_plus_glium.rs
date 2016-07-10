@@ -2,12 +2,11 @@
 extern crate graphics;
 #[macro_use] extern crate glium;
 extern crate glium_graphics;
-extern crate image;
 extern crate piston;
 
 use glium::Surface;
 use glium_graphics::{
-    Flip, Glium2d, GliumWindow, OpenGL, Texture, TextureSettings
+    Glium2d, GliumWindow, OpenGL
 };
 use piston::input::RenderEvent;
 use piston::window::WindowSettings;
@@ -19,9 +18,6 @@ fn main() {
     let ref mut window: GliumWindow =
         WindowSettings::new("glium test", [w, h])
         .exit_on_esc(true).opengl(opengl).build().unwrap();
-
-    let rust_logo = Texture::from_path(window, "resources/parrot.png",
-        Flip::None, &TextureSettings::new()).unwrap();
 
     // ***************** glium code
     #[derive(Copy, Clone)]
@@ -51,22 +47,10 @@ fn main() {
             let mut target = window.draw();
             g2d.draw(&mut target, args.viewport(), |c, g| {
                 clear(color::WHITE, g);
-                rectangle([1.0, 0.0, 0.0, 1.0],
-                          [0.0, 0.0, 100.0, 100.0],
-                          c.transform, g);
-                rectangle([0.0, 1.0, 0.0, 0.3],
-                          [50.0, 50.0, 100.0, 100.0],
-                          c.transform, g);
-                image(&rust_logo, c.transform.trans(100.0, 100.0), g);
-                let transform = c.transform.flip_v().trans(0.0, -300.0);
-                line([0.0, 0.0, 1.0, 1.0], // blue
+                line([1.0, 0.0, 0.0, 1.0], // the red line
                      2.0,
                      [0.0, 0.0, 100.0, 100.0],
-                     transform, g);
-                line([0.0, 1.0, 1.0, 1.0],
-                     3.2,
-                     [100.0, 100.0, 200.0, 300.0],
-                     transform, g);
+                     c.transform, g);
             });
             // glium draw call - we can just use the Surface (Frame) returned by window.draw()
             // It's convenient to use glium from this backend, because, unlike opengl,

@@ -5,7 +5,6 @@ authors = ["Iglói Gábor <gi225@srcf.net>"]
 
 [dependencies]
 glium = "*"
-image = "*"
 piston2d-glium_graphics = "*"
 piston2d-graphics = "*"
 piston = "*"
