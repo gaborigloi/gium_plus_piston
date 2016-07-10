@@ -61,11 +61,10 @@ fn main() {
                     target.clear_color(0.0, 0.0, 1.0, 1.0);
                     g2d.draw(&mut target, viewport, |c, g| {
                         use graphics::*;
-                        let transform = c.transform.flip_v().trans(0.0, -(h as f64));
                         line([1.0, 0.0, 0.0, 1.0], // the red line
                              2.0,
                              [0.0, 0.0, 100.0, 100.0],
-                             transform, g);
+                             c.transform, g);
                     });
                     target.finish().unwrap();
                 },
